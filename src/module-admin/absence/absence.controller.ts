@@ -24,6 +24,7 @@ export class AbsenceController {
     roles: [EnumRoleCode.EMPLOYEE, EnumRoleCode.ADMIN],
   }) */
   async getById(@Param('id') id: any) {
-    return 1;
+    const res = await this.absenceService.getById();
+    return res;
   }
 }

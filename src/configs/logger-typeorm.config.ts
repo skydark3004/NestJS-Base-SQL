@@ -1,4 +1,7 @@
 import { AbstractLogger, LogLevel, LogMessage, QueryRunner } from 'typeorm';
+import { logToFile } from '../libs/utils/logger.util';
+
+const log = logToFile.getLogger('LOGGING_MONGODB');
 
 export class MyCustomLogger extends AbstractLogger {
   /**
@@ -52,13 +55,13 @@ export class MyCustomLogger extends AbstractLogger {
 
   logQuery(query: string, parameters?: any[]): any {
     console.log('log from logQuery');
-    console.log(query);
-    console.log(parameters);
+    const sql = query + (parameters && parameters.length ? ' -- PARAMETERS: ' + this.stringifyParams(parameters) : '');
+    log.info(sql);
   }
 
-  log(level: 'log' | 'info' | 'warn', message: any): any {
+  /*   log(level: 'log' | 'info' | 'warn', message: any): any {
     console.log('log from method log');
     console.log(level);
     console.log(message);
-  }
+  } */
 }

@@ -18,4 +18,10 @@ export class AbsenceService {
 
     return result;
   }
+
+  async getById() {
+    const result = await this.absenceRepository.findAndCount();
+
+    return result;
+  }
 }
